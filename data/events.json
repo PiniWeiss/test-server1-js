@@ -1,12 +1,3 @@
 [
-  {
-    "eventName": "show",
-    "ticketsAvailable": 20,
-    "createdBy": "Pini"
-  },
-  {
-    "eventName": "blablabla",
-    "ticketsAvailable": 1,
-    "createdBy": "Pini"
-  }
+
 ]
