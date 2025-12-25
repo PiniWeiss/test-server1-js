@@ -4,7 +4,7 @@ import {
   readReceipts,
   writeEvents,
   writeUsers,
-  writeReceipts
+  writeReceipts,
 } from "../utils/utilityFunctions.js";
 
 export const createUser = async (req, res) => {
@@ -38,7 +38,7 @@ export const buyTickets = async (req, res) => {
     const events = await readEvents();
     const receipts = await readReceipts();
     console.log(receipts);
-    
+
     const event = events.find((e) => e.eventName === body.eventName);
     const user = users.find((u) => u.userName === body.userName);
     if (!event) throw new Error("There is no event named like this.");
@@ -62,5 +62,39 @@ export const buyTickets = async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ msg: "error" + err.message, data: null });
+  }
+};
+
+export const getUserSummary = async (req, res) => {
+  try {
+    const { username } = req.params;
+    const receipts = await readReceipts();
+    const userReceipts = receipts.filter((r) => r.userName === username);
+
+    if (!userReceipts) {
+      res.status(404).json({ success: false, data: {} });
+    } else {
+      let totalTickets = 0;
+      for (let i = 0; i < userReceipts.length; i++) {
+        totalTickets += userReceipts[i].ticketsBought;
+      }
+
+      let eventsNames = [];
+      for (let i = 0; i < userReceipts.length; i++) {
+        eventsNames.push(userReceipts[i].eventName);
+      }
+      const averageTicketsPerEven = totalTickets / eventsNames.length;
+
+      res.status(200).json({
+        success: true,
+        data: {
+          totalTicketsBought: totalTickets,
+          events: eventsNames,
+          averageTicketsPerEvent: averageTicketsPerEven,
+        },
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, data: error.message });
   }
 };
