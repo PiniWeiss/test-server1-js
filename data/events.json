@@ -1,0 +1,12 @@
+[
+  {
+    "eventName": "show",
+    "ticketsAvailable": 20,
+    "createdBy": "Pini"
+  },
+  {
+    "eventName": "blablabla",
+    "ticketsAvailable": 13,
+    "createdBy": "Pini"
+  }
+]
