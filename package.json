@@ -1,0 +1,26 @@
+{
+  "name": "testjs4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PiniWeiss/test-server1-js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/PiniWeiss/test-server1-js/issues"
+  },
+  "homepage": "https://github.com/PiniWeiss/test-server1-js#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
